@@ -1,6 +1,5 @@
 package com.nvwa.registry.annotation;
 
-
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.*;
@@ -12,11 +11,11 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Component
-public @interface RegistryServer {
+public @interface ServiceProvider {
 
     /**
      * 服务类
      * @return
      */
-    Class<?> service() default Void.class;
+    Class<?> serviceInterface() default Void.class;
 }

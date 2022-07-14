@@ -2,10 +2,13 @@ package com.nvwa.registry.service;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.nvwa.registry.annotation.RegistryServer;
+import com.nvwa.registry.annotation.ServiceProvider;
 import com.nvwa.registry.cache.ProviderContainer;
 import com.nvwa.registry.domain.NetUrl;
 import com.nvwa.registry.domain.ProviderRegistryEntity;
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
@@ -24,24 +27,34 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @Desc:
+ * @Desc: 服务注册
  * @Author: 泽露
  * @Date: 2022/7/6 7:44 PM
  * @Version: 1.initial version; 2022/7/6 7:44 PM
  */
 @Component
-public class RegistryServerCenter implements SmartLifecycle, InitializingBean, ApplicationContextAware {
+@Slf4j
+public class ServerProviderRegistry implements InitializingBean, ApplicationContextAware {
+
+    private static Logger logger = LoggerFactory.getLogger(ServerProviderRegistry.class);
 
     private Selector selector;
     private ServerSocketChannel serverSocketChannel;
     private ApplicationContext applicationContext;
     public static final int PORT = 8090;
 
+    private static ConcurrentHashMap<String, Object> serviceBeanMap = new ConcurrentHashMap<>();
+
     private ByteBuffer buffer;
 
-    public RegistryServerCenter() throws IOException {
+    /**
+     * 绑定端口
+     * @throws IOException
+     */
+    public ServerProviderRegistry() throws IOException {
         this.selector = Selector.open();
         selector = Selector.open();
         serverSocketChannel = ServerSocketChannel.open();
@@ -52,78 +65,13 @@ public class RegistryServerCenter implements SmartLifecycle, InitializingBean, A
         buffer = ByteBuffer.allocate(1024);
     }
 
-    @Override
-    public void start() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (!Thread.interrupted()) {
-                    try {
-                        selector.select();
-                        Set<SelectionKey> selectionKeys = selector.selectedKeys();
-                        Iterator<SelectionKey> iterator = selectionKeys.iterator();
-                        while (iterator.hasNext()) {
-                            SelectionKey key = iterator.next();
-                            if (key.isAcceptable()) {
-                                SocketChannel accept = serverSocketChannel.accept();
-                                accept.configureBlocking(false);
-                                accept.register(selector, SelectionKey.OP_READ);
-                            } else if (key.isReadable()) {
-                                SocketChannel channel = (SocketChannel) key.channel();
-                                key.interestOps(SelectionKey.OP_WRITE);
-                                handleRegistrySocket(channel);
-                            } else if (key.isWritable()) {
-                                SocketChannel channel = (SocketChannel) key.channel();
-
-                            }
-                            iterator.remove();
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-    }
-
-    @Override
-    public void stop() {
-
-    }
-
-    @Override
-    public boolean isRunning() {
-        return false;
-    }
-
-    /**
-     * 处理注册链接
-     * @param channel
-     */
-    public void handleRegistrySocket(SocketChannel channel){
-        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-        try {
-            byteBuffer.clear();
-            channel.read(byteBuffer);
-            byteBuffer.flip();
-            String s = new String(byteBuffer.array(), StandardCharsets.UTF_8);
-            ProviderRegistryEntity providerRegistry = JSONObject.parseObject(s, ProviderRegistryEntity.class);
-            System.out.println("received:" + JSONObject.toJSONString(providerRegistry));
-            ProviderContainer.registry(providerRegistry);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            byteBuffer.clear();
-        }
-    }
 
 
     /**
      * 注册
      * @param service
-     * @param netUrl
      */
-    public void registry(Class<?> service, NetUrl netUrl) throws IOException {
+    public void registry(Class<?> service) throws IOException {
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         SocketChannel socketChannel = null;
         try {
@@ -157,12 +105,13 @@ public class RegistryServerCenter implements SmartLifecycle, InitializingBean, A
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Map<String, Object> beansWithAnnotation = applicationContext.getBeansWithAnnotation(RegistryServer.class);
+        logger.trace("开始扫描ServiceProvider的实现类并注册");
+        Map<String, Object> beansWithAnnotation = applicationContext.getBeansWithAnnotation(ServiceProvider.class);
         beansWithAnnotation.forEach((key, value) -> {
-            RegistryServer registryServer = value.getClass().getAnnotation(RegistryServer.class);
-            Class<?> service = registryServer.service();
+            ServiceProvider registryServer = value.getClass().getAnnotation(ServiceProvider.class);
+            Class<?> service = registryServer.serviceInterface();
             try {
-                registry(service, NetUrl.getRegistryUrl());
+                registry(service);
             } catch (IOException e) {
                 e.printStackTrace();
             }

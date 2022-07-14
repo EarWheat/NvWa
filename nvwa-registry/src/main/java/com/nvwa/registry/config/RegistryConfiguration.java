@@ -1,6 +1,7 @@
 package com.nvwa.registry.config;
 
-import com.nvwa.registry.service.RegistryServerCenter;
+import com.nvwa.registry.service.RegistryCenter;
+import com.nvwa.registry.service.ServerProviderRegistry;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,10 +15,10 @@ import org.springframework.context.annotation.Configuration;
 public class RegistryConfiguration {
 
     @Bean
-    public RegistryServerCenter registryServerCenter(){
-        RegistryServerCenter server = null;
+    public RegistryCenter registryCenter(){
+        RegistryCenter server = null;
         try {
-            server = new RegistryServerCenter();
+            server = new RegistryCenter();
         } catch (Exception e){
 
         }

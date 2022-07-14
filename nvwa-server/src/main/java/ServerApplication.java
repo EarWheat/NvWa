@@ -15,14 +15,13 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @Slf4j
 @SpringBootApplication
-//@EnableEurekaServer
 @EnableRegistryServer
 @ComponentScan(value = "com.nvwa")
-public class EurekaServiceApplication {
+public class ServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication eurekaServiceApplication = new SpringApplication(EurekaServiceApplication.class);
+        SpringApplication eurekaServiceApplication = new SpringApplication(ServerApplication.class);
         eurekaServiceApplication.run(args);
-        log.info("EurekaServiceApplication started");
+        log.info("ServerApplication started");
     }
 }
