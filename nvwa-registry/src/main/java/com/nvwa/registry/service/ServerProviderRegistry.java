@@ -11,6 +11,7 @@ import com.sun.org.slf4j.internal.LoggerFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.SmartLifecycle;
@@ -36,7 +37,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @Version: 1.initial version; 2022/7/6 7:44 PM
  */
 @Component
-@Slf4j
+//@Slf4j
 public class ServerProviderRegistry implements InitializingBean, ApplicationContextAware {
 
     private static Logger logger = LoggerFactory.getLogger(ServerProviderRegistry.class);
@@ -44,7 +45,12 @@ public class ServerProviderRegistry implements InitializingBean, ApplicationCont
     private Selector selector;
     private ServerSocketChannel serverSocketChannel;
     private ApplicationContext applicationContext;
-    public static final int PORT = 8090;
+
+    @Value("${registry.server.host:127.0.0.1}")
+    private String HOST;
+
+    @Value("${registry.server.port:9000}")
+    public Integer PORT;
 
     private static ConcurrentHashMap<String, Object> serviceBeanMap = new ConcurrentHashMap<>();
 
@@ -58,7 +64,7 @@ public class ServerProviderRegistry implements InitializingBean, ApplicationCont
         this.selector = Selector.open();
         selector = Selector.open();
         serverSocketChannel = ServerSocketChannel.open();
-        SocketAddress socketAddress = new InetSocketAddress("127.0.0.1", PORT);
+        SocketAddress socketAddress = new InetSocketAddress(HOST, PORT);
         serverSocketChannel.configureBlocking(false);
         serverSocketChannel.bind(socketAddress);
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);

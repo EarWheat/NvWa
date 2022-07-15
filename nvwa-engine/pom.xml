@@ -33,6 +33,24 @@
 <!--            <artifactId>zkclient</artifactId>-->
 <!--            <version>0.10</version>-->
 <!--        </dependency>-->
+                <dependency>
+                    <groupId>org.apache.dubbo</groupId>
+                    <artifactId>dubbo-spring-boot-starter</artifactId>
+                    <version>${spring-boot-starter-dubbo.version}</version>
+                </dependency>
+<!--         https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
+                <dependency>
+                    <groupId>org.apache.zookeeper</groupId>
+                    <artifactId>zookeeper</artifactId>
+                    <version>3.7.0</version>
+                </dependency>
+                <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-dependencies-zookeeper -->
+                <dependency>
+                    <groupId>org.apache.dubbo</groupId>
+                    <artifactId>dubbo-dependencies-zookeeper</artifactId>
+                    <version>${spring-boot-starter-dubbo.version}</version>
+                    <type>pom</type>
+                </dependency>
     </dependencies>
 
 </project>

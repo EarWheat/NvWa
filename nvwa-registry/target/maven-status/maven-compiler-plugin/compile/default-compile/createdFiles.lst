@@ -1,0 +1,10 @@
+com/nvwa/registry/domain/ProviderRegistryEntity.class
+com/nvwa/registry/service/RegistryCenter$1.class
+com/nvwa/registry/domain/ProviderRegistryEntity$ProviderRegistryEntityBuilder.class
+com/nvwa/registry/domain/NetUrl.class
+com/nvwa/registry/service/ServerProviderRegistry.class
+com/nvwa/registry/cache/ProviderContainer.class
+com/nvwa/registry/annotation/EnableRegistryServer.class
+com/nvwa/registry/service/RegistryCenter.class
+com/nvwa/registry/config/RegistryConfiguration.class
+com/nvwa/registry/annotation/ServiceProvider.class

@@ -1,0 +1,8 @@
+/Users/liuzhaolu/IdeaProjects/NvWa/nvwa-registry/src/main/java/com/nvwa/registry/annotation/EnableRegistryServer.java
+/Users/liuzhaolu/IdeaProjects/NvWa/nvwa-registry/src/main/java/com/nvwa/registry/cache/ProviderContainer.java
+/Users/liuzhaolu/IdeaProjects/NvWa/nvwa-registry/src/main/java/com/nvwa/registry/service/ServerProviderRegistry.java
+/Users/liuzhaolu/IdeaProjects/NvWa/nvwa-registry/src/main/java/com/nvwa/registry/config/RegistryConfiguration.java
+/Users/liuzhaolu/IdeaProjects/NvWa/nvwa-registry/src/main/java/com/nvwa/registry/domain/ProviderRegistryEntity.java
+/Users/liuzhaolu/IdeaProjects/NvWa/nvwa-registry/src/main/java/com/nvwa/registry/domain/NetUrl.java
+/Users/liuzhaolu/IdeaProjects/NvWa/nvwa-registry/src/main/java/com/nvwa/registry/annotation/ServiceProvider.java
+/Users/liuzhaolu/IdeaProjects/NvWa/nvwa-registry/src/main/java/com/nvwa/registry/service/RegistryCenter.java
