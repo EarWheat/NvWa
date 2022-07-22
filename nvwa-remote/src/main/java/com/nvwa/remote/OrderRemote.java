@@ -1,5 +1,6 @@
 package com.nvwa.remote;
 
+import com.nvwa.annotation.ServiceProvider;
 import com.nvwa.response.OrderInfo;
 import com.nvwa.service.OrderService;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,8 @@ import java.util.List;
  * ------------------------------------------ *
  * 2022/1/17 8:01 下午     liuzhaolu       firstVersion
  */
-@Component
+//@Component
+@ServiceProvider(serviceInterface = OrderService.class)
 public class OrderRemote implements OrderService {
     @Override
     public OrderInfo updateOrderInfo(OrderInfo orderInfo) {

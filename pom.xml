@@ -10,7 +10,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>nvwa-gate-way</module>
-        <module>nvwa-server</module>
+        <module>nvwa-registry-server</module>
         <module>nvwa-api</module>
         <module>nvwa-common</module>
         <module>nvwa-engine</module>
@@ -21,7 +21,7 @@
     <properties>
         <spring-boot-starter-parent.version>2.1.0.RELEASE</spring-boot-starter-parent.version>
         <spring-cloud-starter-ribbon.version>1.4.2.RELEASE</spring-cloud-starter-ribbon.version>
-        <spring-boot-starter-web.version>2.6.1</spring-boot-starter-web.version>
+        <spring-boot-starter-web.version>2.7.1</spring-boot-starter-web.version>
         <spring-cloud-starter-eureka.version>1.4.2.RELEASE</spring-cloud-starter-eureka.version>
         <spring-boot-starter-dubbo.version>3.0.2</spring-boot-starter-dubbo.version>
         <log4j.version>2.17.0</log4j.version>

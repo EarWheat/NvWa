@@ -11,9 +11,9 @@ X是A的**传递依赖**，同时也是B的**传递依赖**，所以如果同时
 ## 如何发现依赖冲突
 依赖冲突一般会导致**NoClassDefFoundError，ClassNotFoundException，NoSuchMethodError**等异常，原因多是因为依赖冲突导致的。例如Maven采用了A包的1。0版本，在B里面自然找不到在2.0才新增的方法或者类，所以或抛出对应异常。
 实际工作中的依赖冲突不会这么明显，我们可以借助工具或者插件。
-![https://img-blog.csdnimg.cn/img_convert/62712488522ea963b06563d56abe5ff8.png](img_1.png)
-![https://img-blog.csdnimg.cn/img_convert/a71773270e0ee98ec4a5c9965746631d.png](img_1.png)
-![https://img-blog.csdnimg.cn/img_convert/6636002e2e1776086f64a79d84dd5bda.png](img_1.png)
+![https://img-blog.csdnimg.cn/img_convert/62712488522ea963b06563d56abe5ff8.png](https://img-blog.csdnimg.cn/img_convert/62712488522ea963b06563d56abe5ff8.png)
+![https://img-blog.csdnimg.cn/img_convert/a71773270e0ee98ec4a5c9965746631d.png](https://img-blog.csdnimg.cn/img_convert/a71773270e0ee98ec4a5c9965746631d.png)
+![https://img-blog.csdnimg.cn/img_convert/6636002e2e1776086f64a79d84dd5bda.png](https://img-blog.csdnimg.cn/img_convert/6636002e2e1776086f64a79d84dd5bda.png)
 如果是线上或者预发环境无法使用插件，可以使用mvn命令
 ```shell
 mvn dependency:tree -Dverbose
