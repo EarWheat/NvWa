@@ -1,10 +1,9 @@
+import com.nvwa.remote.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ImportResource;
 
 /**
  * @author ：liuzhaolu
@@ -18,13 +17,15 @@ import org.springframework.context.annotation.ImportResource;
 @SpringBootApplication
 @Slf4j
 @ComponentScan(value = "com.nvwa")
-@ImportResource(locations = "classpath:dubboConfig.xml")
-@EnableDubbo
+//@ImportResource(locations = "classpath:dubboConfig.xml")
+//@EnableDubbo
 public class EngineApplication {
 
     public static void main(String[] args) {
         SpringApplication application = new SpringApplication(EngineApplication.class);
-        application.run(args);
+        ConfigurableApplicationContext context = application.run(args);
+        HelloService helloService = (HelloService) context.getBean("HelloService");
+        System.out.println(helloService.sayHello());
         log.info("nvwa engine start success");
     }
 }

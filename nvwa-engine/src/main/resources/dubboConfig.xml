@@ -14,8 +14,8 @@
     <dubbo:protocol name="dubbo" port="20881"/>
 
     <!--4、声明需要暴露的服务接口，ref属性要指向容器中的接口实现对象-->
-    <dubbo:service ref="engineServiceImpl" interface="com.nvwa.service.EngineService"/>
+    <dubbo:service ref="engineServiceImpl" interface="com.nvwa.remote.service.EngineService"/>
 
-<!--    <bean id="dubboDemoService" class="com.nvwa.serviceImpl.DubboDemoServiceImpl"/>-->
+<!--    <bean id="dubboDemoService" class="DubboDemoServiceImpl"/>-->
 
 </beans>
