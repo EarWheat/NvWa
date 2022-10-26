@@ -20,11 +20,11 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class WeatherPushScheduled {
 
-//    @DubboReference
-//    public WeatherService weatherService;
-
     @DubboReference
-    public CreditService creditService;
+    public WeatherService weatherService;
+
+//    @DubboReference
+//    public CreditService creditService;
 
     /**
      * 每日8点推送天气信息
@@ -33,8 +33,8 @@ public class WeatherPushScheduled {
     @Scheduled(fixedDelay = 1000, initialDelay = 30 * 1000)
     public void weatherPush() {
         log.info("开始推送天气....");
-//        WeatherData todayWeather = weatherService.getTodayWeather("");
-//        System.out.println(JSONObject.toJSONString(todayWeather));
+        WeatherData todayWeather = weatherService.getTodayWeather("");
+        System.out.println(JSONObject.toJSONString(todayWeather));
 //        creditService.getCreditInfo("ssss");
     }
 
