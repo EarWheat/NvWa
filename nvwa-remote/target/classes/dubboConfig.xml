@@ -1,25 +1,27 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
-<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"-->
-<!--       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">-->
-<!--    &lt;!&ndash;1、指定当前服务/应用的名字（同样的服务名字相同，不要和其它的服务同名）&ndash;&gt;-->
-<!--    <dubbo:application name="user-provider"/>-->
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+    <!--1、指定当前服务/应用的名字（同样的服务名字相同，不要和其它的服务同名）-->
+    <dubbo:application name="service-provider"/>
 
-<!--    &lt;!&ndash;2、指定注册中心的位置（注册中心不同，服务地址的写法不同）&ndash;&gt;-->
-<!--    &lt;!&ndash;<dubbo:registry address="redis://192.168.205.128:6379"/>&ndash;&gt;-->
-<!--&lt;!&ndash;    <dubbo:registry address="N/A"/>&ndash;&gt;-->
-<!--    <dubbo:registry address="zookeeper://${zookeeper.address:127.0.0.1}:2181"/>-->
+    <!--2、指定注册中心的位置（注册中心不同，服务地址的写法不同）-->
+    <!--<dubbo:registry address="redis://192.168.205.128:6379"/>-->
+<!--    <dubbo:registry address="N/A"/>-->
+    <dubbo:registry address="zookeeper://${zookeeper.address:30.206.65.121}:2181"/>
 
-<!--    &lt;!&ndash;3、指定通信规则（通信协议&通信端口）&ndash;&gt;-->
-<!--    <dubbo:protocol name="dubbo" port="20880"/>-->
+    <!--3、指定通信规则（通信协议&通信端口）-->
+    <dubbo:protocol name="dubbo" port="20880"/>
 
-<!--    &lt;!&ndash;4、声明需要暴露的服务接口，ref属性要指向容器中的接口实现对象&ndash;&gt;-->
+    <!--4、声明需要暴露的服务接口，ref属性要指向容器中的接口实现对象-->
 <!--    <dubbo:service ref="creditRemote" interface="com.nvwa.remote.service.CreditService"/>-->
 
 <!--    <dubbo:service ref="driverRemote" interface="com.nvwa.remote.service.UserService"/>-->
 
 <!--    <dubbo:service ref="orderRemote" interface="com.nvwa.remote.service.OrderService"/>-->
 
-<!--&lt;!&ndash;    <bean id="dubboDemoService" class="DubboDemoServiceImpl"/>&ndash;&gt;-->
+    <dubbo:service ref="weatherService" interface="com.nvwa.remote.service.WeatherService"/>
 
-<!--</beans>-->
+<!--    <bean id="dubboDemoService" class="DubboDemoServiceImpl"/>-->
+
+</beans>

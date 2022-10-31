@@ -3,6 +3,7 @@ package com.nvwa.remote;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
@@ -20,7 +21,8 @@ import org.springframework.context.annotation.ImportResource;
 @Slf4j
 @EnableDubbo
 @ComponentScan(value = "com.nvwa.remote")
-//@ImportResource(locations = "classpath:dubboConfig.xml")
+@EnableAutoConfiguration
+@ImportResource(locations = "classpath:dubboConfig.xml")
 public class RemoteApplication {
 
     public static void main(String[] args) {
