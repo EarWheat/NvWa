@@ -22,7 +22,7 @@
 
     <dubbo:consumer registry="zk"/>
 
-    <dubbo:reference id="weatherService" interface="com.nvwa.remote.service.WeatherService"/>
+<!--    <dubbo:reference id="weatherService" interface="com.nvwa.remote.service.WeatherService"/>-->
 
 
 <!--    <bean id="weatherService" class="com.nvwa.remote.service.WeatherService" />-->

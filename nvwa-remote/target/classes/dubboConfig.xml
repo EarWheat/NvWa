@@ -20,7 +20,7 @@
 
 <!--    <dubbo:service ref="orderRemote" interface="com.nvwa.remote.service.OrderService"/>-->
 
-    <dubbo:service ref="weatherService" interface="com.nvwa.remote.service.WeatherService"/>
+<!--    <dubbo:service ref="weatherService" interface="com.nvwa.remote.service.WeatherService"/>-->
 
 <!--    <bean id="dubboDemoService" class="DubboDemoServiceImpl"/>-->
 

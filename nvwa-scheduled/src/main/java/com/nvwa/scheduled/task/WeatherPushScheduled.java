@@ -22,8 +22,8 @@ import javax.annotation.Resource;
 @Slf4j
 public class WeatherPushScheduled {
 
-//    @DubboReference(version = "1.0.0")
-    @Resource(name = "weatherService")
+    @DubboReference(version = "1.0.0")
+//    @Resource(name = "weatherService")
     public WeatherService weatherService;
 
 //    @DubboReference
