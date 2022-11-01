@@ -3,7 +3,6 @@ package com.nvwa.remote.remote;
 import com.nvwa.remote.response.WeatherData;
 import com.nvwa.remote.service.WeatherService;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.springframework.stereotype.Component;
 
 @DubboService(version = "1.0.0")
 //@Component(value = "weatherService")

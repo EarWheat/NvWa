@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
  * ------------------------------------------ *
  * 2022/3/25 4:28 下午     liuzhaolu       firstVersion
  */
-//@RequestMapping(value = "/order")
-//@RestController
-//public class OrderController {
-//
-//    @RequestMapping(value = "/getOrderInfo", method = RequestMethod.GET)
-//    public String getOrderInfo() {
-//        OrderInfo orderInfo = OrderInfo.builder()
-//                .userId(123456L)
-//                .userName("zero")
-//                .status(0)
-//                .build();
-//        return JSONObject.toJSONString(orderInfo);
-//    }
-//}
+@RequestMapping(value = "/order")
+@RestController
+public class OrderController {
+
+    @RequestMapping(value = "/getOrderInfo", method = RequestMethod.POST)
+    public String getOrderInfo() {
+        OrderInfo orderInfo = OrderInfo.builder()
+                .userId(123456L)
+                .userName("zero")
+                .status(0)
+                .build();
+        return JSONObject.toJSONString(orderInfo);
+    }
+}

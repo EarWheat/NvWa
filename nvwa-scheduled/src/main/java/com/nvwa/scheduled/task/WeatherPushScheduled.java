@@ -2,15 +2,16 @@ package com.nvwa.scheduled.task;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.nvwa.remote.entity.RestResult;
 import com.nvwa.remote.response.WeatherData;
-import com.nvwa.remote.service.CreditService;
 import com.nvwa.remote.service.WeatherService;
+import com.nvwa.util.HttpUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+import java.util.HashMap;
 
 /**
  * @Desc:
@@ -23,21 +24,22 @@ import javax.annotation.Resource;
 public class WeatherPushScheduled {
 
     @DubboReference(version = "1.0.0")
-//    @Resource(name = "weatherService")
     public WeatherService weatherService;
-
-//    @DubboReference
-//    public CreditService creditService;
 
     /**
      * 每日8点推送天气信息
      */
-//    @Scheduled(cron = "0 0 2 * * ?")
     @Scheduled(fixedDelay = 1000, initialDelay = 3 * 1000)
     public void weatherPush() {
         log.info("开始推送天气....");
         WeatherData todayWeather = weatherService.getTodayWeather("");
         System.out.println(JSONObject.toJSONString(todayWeather));
+        try {
+            RestResult<Object> objectRestResult = HttpUtils.doPost(new HashMap<>(), "http://127.0.0.1:8092/order/getOrderInfo");
+            System.out.println(objectRestResult.getData().toString());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 //        creditService.getCreditInfo("ssss");
     }
 

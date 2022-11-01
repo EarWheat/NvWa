@@ -23,13 +23,13 @@ import lombok.NoArgsConstructor;
 public class RestResult<T> {
 
     /**
-     * 错误吗
+     * 错误码
      */
     @JSONField(name = "errno")
     private Integer errno;
 
-    @JSONField(name = "errmsg")
-    private String errmsg;
+    @JSONField(name = "errMsg")
+    private String errMsg;
 
     @JSONField(name = "data")
     private T data;
@@ -38,7 +38,7 @@ public class RestResult<T> {
     public static <T> RestResult<T> buildSuccess(T t){
         return (RestResult<T>) RestResult.builder()
                 .errno(ResponseEnum.SUCCESS.getCode())
-                .errmsg(ResponseEnum.SUCCESS.getMsg())
+                .errMsg(ResponseEnum.SUCCESS.getMsg())
                 .data(t)
                 .build();
     }
@@ -46,7 +46,7 @@ public class RestResult<T> {
     public static <T> RestResult<T> buildFail(T t){
         return (RestResult<T>) RestResult.builder()
                 .errno(ResponseEnum.FAIL.getCode())
-                .errmsg(ResponseEnum.FAIL.getMsg())
+                .errMsg(ResponseEnum.FAIL.getMsg())
                 .data(t)
                 .build();
     }
