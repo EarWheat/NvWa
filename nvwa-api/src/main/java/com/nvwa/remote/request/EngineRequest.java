@@ -1,4 +1,4 @@
-package com.nvwa.remote.entity;
+package com.nvwa.remote.request;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.nvwa.remote.request.ProcessReq;

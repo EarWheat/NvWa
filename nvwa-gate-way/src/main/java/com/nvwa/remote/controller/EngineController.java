@@ -1,7 +1,7 @@
 package com.nvwa.remote.controller;
 
-import com.nvwa.remote.entity.EngineRequest;
-import com.nvwa.remote.entity.RestResult;
+import com.nvwa.remote.request.EngineRequest;
+import com.nvwa.remote.response.RestResult;
 import com.nvwa.remote.response.ProcessResult;
 import com.nvwa.remote.service.EngineStartService;
 import lombok.extern.slf4j.Slf4j;

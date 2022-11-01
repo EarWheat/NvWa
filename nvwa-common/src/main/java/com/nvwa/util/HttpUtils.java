@@ -1,6 +1,6 @@
 package com.nvwa.util;
 
-import com.nvwa.remote.entity.RestResult;
+import com.nvwa.remote.response.RestResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;

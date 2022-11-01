@@ -1,4 +1,4 @@
-package com.nvwa.remote.util.threadPool;
+package com.nvwa.util.threadPool;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;

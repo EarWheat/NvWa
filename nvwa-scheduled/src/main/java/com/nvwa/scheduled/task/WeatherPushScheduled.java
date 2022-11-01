@@ -2,7 +2,7 @@ package com.nvwa.scheduled.task;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.nvwa.remote.entity.RestResult;
+import com.nvwa.remote.response.RestResult;
 import com.nvwa.remote.response.WeatherData;
 import com.nvwa.remote.service.WeatherService;
 import com.nvwa.util.HttpUtils;

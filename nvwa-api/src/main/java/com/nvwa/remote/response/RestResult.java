@@ -1,4 +1,4 @@
-package com.nvwa.remote.entity;
+package com.nvwa.remote.response;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.nvwa.remote.enums.ResponseEnum;

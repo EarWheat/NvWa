@@ -10,7 +10,7 @@ import com.nvwa.remote.service.CreditService;
 import com.nvwa.remote.service.EngineService;
 import com.nvwa.remote.service.OrderService;
 import com.nvwa.remote.service.UserService;
-import com.nvwa.remote.util.threadPool.ThreadPoolUtil;
+import com.nvwa.util.threadPool.ThreadPoolUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Component;

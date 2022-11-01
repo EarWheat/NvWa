@@ -1,6 +1,6 @@
 package com.nvwa.remote.serviceImpl;
 
-import com.nvwa.remote.entity.EngineRequest;
+import com.nvwa.remote.request.EngineRequest;
 import com.nvwa.remote.response.ProcessResult;
 import com.nvwa.remote.service.EngineService;
 import com.nvwa.remote.service.EngineStartService;
