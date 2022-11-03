@@ -8,7 +8,4 @@ package com.nvwa.remote.constants;
  */
 public class WxOfficialConstants {
 
-    public static final String APP_ID = "wx400d53ab9dd382f1";
-
-    public static final String SECRET = "4846eca1390873eb4d5d1d91d7ad0cce";
 }
