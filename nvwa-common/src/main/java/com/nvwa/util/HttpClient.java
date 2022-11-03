@@ -15,7 +15,7 @@ import java.util.Map;
  */
 
 @Slf4j
-public class HttpUtils {
+public class HttpClient {
 
     public static final String POST_ERROR = "post_error";
 
@@ -46,6 +46,7 @@ public class HttpUtils {
 
     /**
      * doPost
+     *
      * @param body
      * @param url
      * @return
@@ -55,5 +56,45 @@ public class HttpUtils {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return doPost(headers, body, url);
+    }
+
+    /**
+     * 发送get请求
+     *
+     * @param headers
+     * @param url
+     * @return
+     * @throws Exception
+     */
+    public static RestResult<Object> doGet(HttpHeaders headers, String url) throws Exception {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+        RestResult<Object> result = RestResult.buildFail(POST_ERROR);
+        try {
+            ResponseEntity<Object> response = restTemplate.exchange(url, HttpMethod.GET, entity, Object.class);
+            result = RestResult.builder()
+                    .data(response.getBody())
+                    .errno(response.getStatusCode().value())
+                    .errMsg(response.getStatusCode().getReasonPhrase())
+                    .build();
+        } catch (Exception e) {
+            log.error("[HttpUtil]|doGet|exception:{}", e.getMessage());
+            throw e;
+        }
+        return result;
+    }
+
+
+    /**
+     * 发送get请求
+     *
+     * @param url
+     * @return
+     * @throws Exception
+     */
+    public static RestResult<Object> doGet(String url) throws Exception {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return doGet(headers, url);
     }
 }

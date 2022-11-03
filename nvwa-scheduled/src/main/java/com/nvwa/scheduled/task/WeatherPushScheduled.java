@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.nvwa.remote.response.RestResult;
 import com.nvwa.remote.response.WeatherData;
 import com.nvwa.remote.service.WeatherService;
-import com.nvwa.util.HttpUtils;
+import com.nvwa.util.HttpClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -35,7 +35,7 @@ public class WeatherPushScheduled {
         WeatherData todayWeather = weatherService.getTodayWeather("");
         System.out.println(JSONObject.toJSONString(todayWeather));
         try {
-            RestResult<Object> objectRestResult = HttpUtils.doPost(new HashMap<>(), "http://127.0.0.1:8092/order/getOrderInfo");
+            RestResult<Object> objectRestResult = HttpClient.doPost(new HashMap<>(), "http://127.0.0.1:8092/order/getOrderInfo");
             System.out.println(objectRestResult.getData().toString());
         } catch (Exception e){
             e.printStackTrace();
