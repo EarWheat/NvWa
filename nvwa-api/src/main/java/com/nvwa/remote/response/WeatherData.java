@@ -1,11 +1,13 @@
 package com.nvwa.remote.response;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Desc: 天气类
@@ -21,16 +23,41 @@ public class WeatherData implements Serializable {
 
     private static final long serialVersionUID = 1047012784537358180L;
 
-    /**
-     * 天气
-     */
-    private String weather;
-    /**
-     * 温度
-     */
-    private String temperature;
-    /**
-     * 湿度
-     */
-    private String humidity;
+    @JSONField(name = "cityid")
+    private Long cityId;
+
+    @JSONField(name = "city")
+    private String cityName;
+
+    @JSONField(name = "update_time")
+    private String time;
+
+    @JSONField(name = "data")
+    private List<WeatherDetail> detail;
+
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    @Data
+    public static class WeatherDetail {
+
+        @JSONField(name = "day")
+        public String day;
+
+        @JSONField(name = "date")
+        public String date;
+
+        @JSONField(name = "week")
+        public String week;
+
+        @JSONField(name = "tem")
+        public Double tem;
+
+        @JSONField(name = "tem1")
+        public Double maxTem;
+
+        @JSONField(name = "tem2")
+        public Double minTem;
+    }
+
 }
