@@ -16,6 +16,7 @@
         <module>nvwa-engine</module>
         <module>nvwa-remote</module>
         <module>nvwa-scheduled</module>
+        <module>cookie-biz</module>
         <!--        <module>nvwa-registry</module>-->
     </modules>
 
